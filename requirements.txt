@@ -1,0 +1,7 @@
+vosk
+pyaudio
+pyttsx3
+ultralytics
+opencv-python
+adafruit-circuitpython-servokit
+RPi.GPIO
