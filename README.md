@@ -45,6 +45,16 @@ A highly interactive 6-DOF robotic arm controlled via voice commands and enhance
 
 ---
 
+## 🧩 3D Printed Robotic Arm Model
+
+You can download the STL file for the robotic arm design below:
+
+[🧩 Download 3D Model (.stl)](Robotic%20Arm%203D%20Model%20v4.stl)
+
+This model can be 3D printed and assembled for use with the Raspberry Pi-controlled voice-command system.
+
+---
+
 ## 🛠️ Setup Instructions
 
 1. **Clone the Repository**
