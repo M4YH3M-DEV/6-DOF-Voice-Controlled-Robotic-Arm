@@ -4,29 +4,130 @@ A highly interactive 6-DOF robotic arm controlled via voice commands and enhance
 
 ## ✨ Features
 
-- 🔊 **Voice-Controlled Interface**: Control the robotic arm using natural language voice commands (via Google Speech Recognition).
-- 🧠 **AI-Powered Object Detection**: YOLOv8 integration for real-time object detection and tracking using a camera.
-- 🦾 **6 Degrees of Freedom**: Precision control over each servo for complex and accurate movement.
-- 🎮 **Manual Control Mode**: Use a keyboard input or physical joystick to manually control each joint.
-- 🔁 **Autonomous Mode**: Automatically detect, target, and interact with objects based on pre-defined behaviors.
-- 📷 **Camera Integration**: Visual feedback and object localization using a Pi Camera or USB webcam.
-- 🌐 **Modular Architecture**: Easily expandable to include additional AI models, gesture control, or remote access.
-- 💾 **Persistent Configs**: Save and load motion presets, positions, and sequences for repeatability.
+🗣️ **Voice Command Integration**  
+- Uses Vosk for offline speech recognition.  
+- Custom command parsing: `"pick up red and put over blue"`, `"rotate red 90 degrees"`, `"place red parallel to blue"`, and more.
 
-## 🧰 Tech Stack
+📷 **Live Camera Preview**  
+- Real-time video feed using `cv2.imshow()` to monitor object positions and arm movements.  
+- Runs on a separate thread to avoid blocking other operations.
 
-- **Hardware**: Raspberry Pi 5, 6 servo motors, camera module, mic
-- **Languages**: Python 3
-- **Libraries**:
-  - `RPi.GPIO`, `time`, `speech_recognition`, `ultralytics`, `cv2` (OpenCV), `pyttsx3`, etc.
-- **AI Models**: YOLOv8 for object detection
+🧠 **YOLOv8 Object Detection**  
+- Detects and localizes colored cubes (e.g., red, blue) using YOLOv8 and OpenCV.  
+- Extracts object positions to guide arm movements intelligently.
 
-## 🛠️ Setup
+🎯 **Smooth & Precise Servo Control**  
+- Controlled via `adafruit_servokit`, ensuring smooth transitions for all 6 joints.  
+- Movement functions are incremental and smooth for precise control.
 
-1. Clone the repository
-2. Install required Python packages
-3. Connect the servo motors and camera
-4. Run the main Python script to start the system
+💾 **Motion Presets with JSON Config**  
+- Save and load custom arm positions using `"save preset <name>"` and `"load preset <name>"` voice commands.  
+- All presets are saved in a `config.json` file for persistence.
+
+🛑 **Pause & Resume (Safety Override)**  
+- Voice-controlled `"stop"` and `"resume"` commands to pause/resume all arm actions.  
+- Prevents unexpected movements for safety and debugging.
+
+🧵 **Multithreaded Design**  
+- Camera feed, servo control, and voice recognition run concurrently using Python threads.
+
+🔊 **Text-to-Speech Feedback**  
+- The system speaks back using `pyttsx3`, confirming commands and task status for full interactivity.
+
+---
+## 🧠 System Requirements
+
+- Raspberry Pi 5 (or any Linux-capable SBC with GPIO)
+- Python 3.7+
+- USB Camera
+- Microphone
+- 6-DOF Robotic Arm (PWM-compatible servos)
+
+---
+
+## 🛠️ Setup Instructions
+
+1. **Clone the Repository**
+    ```bash
+    git clone https://github.com/M4YH3M-DEV/6-DOF-Voice-Controlled-Robotic-Arm.git
+    cd 6-DOF-Voice-Controlled-Robotic-Arm
+    ```
+
+2. **Install Dependencies**
+    ```bash
+    sudo apt-get update
+    sudo apt-get install python3-pyaudio python3-pip portaudio19-dev espeak
+    pip3 install -r requirements.txt
+    ```
+
+3. **Download Vosk Model**
+    ```bash
+    wget https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip
+    unzip vosk-model-small-en-us-0.15.zip
+    ```
+
+4. **Run the Project**
+    ```bash
+    python3 main.py
+    ```
+
+---
+
+## 🔤 Supported Voice Commands
+
+| Command Example                             | Action                       |
+|--------------------------------------------|------------------------------|
+| `"pick up red and put over blue"`          | Pick and place cubes         |
+| `"rotate red 90 degrees"`                  | Rotate a detected cube       |
+| `"place red parallel to blue"`             | Align cubes side-by-side     |
+| `"save preset <name>"`                     | Save current position        |
+| `"load preset <name>"`                     | Load saved position          |
+| `"stop"`                                   | Pause arm operations         |
+| `"resume"`                                 | Resume arm operations        |
+| `"exit"`                                   | Shutdown the system          |
+
+---
+
+## 📁 File Structure
+
+6-DOF-Voice-Controlled-Robotic-Arm/
+
+├── config.json                   # Preset storage
+
+├── vosk-model-small-en-us-0.15/ # Vosk voice recognition model
+
+├── main.py                      # Core logic and loop
+
+├── requirements.txt             # Python dependencies
+
+└── README.md                    # You're reading it!
+
+---
+
+## 📦 Dependencies
+
+- `vosk`, `pyaudio`, `pyttsx3` – Voice recognition & TTS  
+- `ultralytics` – YOLOv8 object detection  
+- `opencv-python` – Camera input & processing  
+- `adafruit-circuitpython-servokit` – Servo control  
+- `RPi.GPIO` – Raspberry Pi GPIO handling  
+
+---
+
+## 🧪 Coming Soon
+
+- Hand gesture control integration  
+- Dynamic environment calibration  
+- Autonomous operation mode (no voice needed)  
+- Mobile app for manual override
+
+---
+
+## 👨‍💻 Author
+
+Made with 💡 && 🧠 by [M4YH3M-DEV](https://github.com/M4YH3M-DEV)
+
+---
 
 ## 📜 License
 
