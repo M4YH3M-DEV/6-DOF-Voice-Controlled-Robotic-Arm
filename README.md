@@ -1,6 +1,6 @@
 # 6-DOF Voice-Controlled Robotic Arm with Vision Integration
 
-![Banner](./6DOF-Banner(1)(1).png)
+![Logo](./6DOF-Banner(1)(1).png)
 
 A highly interactive 6-DOF robotic arm controlled via voice commands and enhanced with object detection using a camera and YOLOv8. This project integrates speech recognition, computer vision, and robotic control using Raspberry Pi 5 and Python, aiming to create a smart and intuitive robotic system for real-world tasks.
 
